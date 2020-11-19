@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Игра</title>
+	<style>
+		body {
+			background: Black;
+			color: White;
+			text-align: center;
+		}
+		.pla {
+			float: left;
+			margin: 4%;
+		}
+		.beta {
+			color: lightblue;
+		}
+	</style>
+</head>
+<body>
+	<div id="mainmenu">
+	<h1>Выбери что лучше <strong class="beta">Beta</strong></h1>
+	<p>В этой игре надо выбирать лидеров из YouTube, но соблюдая правила:</p>
+	<p>1.Нельзя выбирать 1 лидера 3 раза.</p>
+	<p>Всего каналов в игре: <em id="neb"></em></p>
+	<img src="https://cdn.icon-icons.com/icons2/640/PNG/512/youtube-video-social-media-play_icon-icons.com_59108.png" id="play" width="400px" height="300px">
+	</div>
+	<div id="menu">
+	<h1>Выбери что лучше:</h1>
+	</div>
+	<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+	<script>
+		var pla1 = 0;
+		var pla2 = 0;
+		var pla1Pab = 0;
+		var pla2Pab = 0;
+		var name = "";
+		var plas = ["https://i.pinimg.com/736x/09/ec/fa/09ecfa3c43cbc4b3b3ba53c28379a502.jpg","https://yt3.ggpht.com/a/AATXAJwXBclZ0QnnsXTF-rIWKolvQFgAvX6Ly5nRo2Gy=s900-c-k-c0xffffffff-no-rj-mo","https://yt3.ggpht.com/a/AATXAJxjFPUdiglSjKDgrS48uMkeObIIBAU71EGJUMH_=s900-c-k-c0xffffffff-no-rj-mo","https://sun9-56.userapi.com/c858420/v858420682/371a3/x_QW1Bu0Qsw.jpg","https://cdn190.picsart.com/231243158018202.jpg","https://yt3.ggpht.com/a/AATXAJxG5UzPKyAaFkBH8BbAZT3fISMFYVePCC0u30axTg=s900-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/a/AATXAJzdllvBeYEqv0NUZmd1U_ni8hiJau9oP0EKPlvjpw=s900-c-k-c0xffffffff-no-rj-mo","https://avatars.mds.yandex.net/get-zen_doc/1602847/pub_5da0d68386c4a900b246f7bb_5da0dc1da660d76450fd4962/scale_1200","https://interesnyefakty.org/wp-content/uploads/Foto-Gagarinoy-30.jpg","https://prooriginal.ru/image/catalog/demo/brendy/photo.jpg","https://avatars.mds.yandex.net/get-zen_doc/112656/pub_5b7d0b949dbf1900a979b79a_5b7d0ba46adac900a9c3078e/scale_1200","https://sun9-16.userapi.com/Ph5-F65lLf5Lu7aCsUT2aZFdgC_oyldE8OI-YA/JpkKiiv5iSY.jpg","https://pm1.narvii.com/7010/228a7443d6d37dae8a1b5cfbfb039be8c98e7fbar1-659-822v2_hq.jpg","http://gamebomb.ru/files/galleries/001/c/c7/202278.jpg","https://www.clipartmax.com/png/middle/221-2216522_late-gift-rainbow-apple-logo-vector-by-windytheplaneh-logo-apple-1976-1998.png","https://im0-tub-ru.yandex.net/i?id=0c97ab9d9b46a52153141761cf968750&n=13","https://yt3.ggpht.com/ytc/AAUvwngaHuMQoQf6VwNIBnW_M5tlKNpUD9W7LjjUgPY6lQ=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwngwlCKf1VaiaT2M7uliAzOZ-w8QWOOKL1e6ILIdWQ=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwngJ4UfgVTLHOC6QFsrSBDq7_Wz8YwfNdDR8z53QFQ=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwnj0A12ziohho3IhsoOf5UNaM8xDhkgk6gt_PFbDqA=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwniqTwq-FjimEB4h-PAtFGOAA-ZUB4oTQC_crF0T=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwnjGh6K1dpQpjieSLOL-3sqD8FhfycGkqKrsKALD=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwnggErXfeS_tp2iZC6hR-l0TMnTqIj85_s5EU6dcUA=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwnjNQCB8FJiXKtHIAdKte4R221PNIMaAbdvPScZ5kg=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwnjGeCks8WTPLnFFjmXZENzdKG4g2wrnFCWgeV-7Qw=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwnieOsRhV0q4qfT4VPf6h0RlSlKHvYxzB9nPG3dGLg=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwni1_O7aOEZ2hppBI7giAqHu_cZ3pCa3cmijZupY0A=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwnhKyLf32gsPqLPhlOf4ECiCm34O13dUKdGmfHgdCQ=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwnh4rF9y_QNBI8LJCXiTMtRyZg_9aigm74cDDj5BoQ=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwngs7IuFE_p321jJDfSDnB5GaFzLBHFkBDsTcMCD6Q=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwnhKboP3xvVoc7W3BcDEYtGxin9LpnyLT-nKJeeddw=s176-c-k-c0x00ffffff-no-rj","https://yt3.ggpht.com/ytc/AAUvwnhlw_pZ6eBL9a4-8Doja21V1htxIRRepx88GY0Qyw=s176-c-k-c0x00ffffff-no-rj"];
+		var namepla = ["Винди","Пятерка","Неркин","Бав","Аид","A4","КОБЯКОВ","Ольга Бузова","Полина Гагарина","Google","Яндекс","Глент","Мармок","Wylsacom","Apple","Microsoft","Minecraft","ShadowPriestok","_Skrepka","Стинт","Nuckem","HappyLime","BigSTy","Ра","Мс Кус","Поззи","EdisonPts","Мальчик из Интернетов","DEEP","TeM4iK - Brawl Stars","SHAMPANOV","Robzi"];
+		var gerl = ["Ольга Бузова","Полина Гагарина"];
+		var rand = function () {
+			var nem = Math.floor(Math.random() * plas.length);
+			while(plas[nem] == 0) {
+				nem = Math.floor(Math.random() * plas.length);
+			}
+			name = namepla[nem];
+			return nem;
+		}
+		var plaZero = function(nem) {
+			plas[nem] = 0;
+			namepla[nem] = 0;
+		}
+		var pla1Add = function() {
+			var nem = rand();
+			var html1pla = '<div class="pla"><img src="' + plas[nem] + '" width="300px" height="300px"><p>' + namepla[nem] + '</p></div>';
+			plaZero(nem);
+			pla1 = $(html1pla);
+			pla1.click(pla1fun);
+			$("#menu").append(pla1);
+		}
+		var pla2Add = function() {
+			nem = rand();
+			var html1pla = '<div class="pla"><img src="' + plas[nem] + '" width="300px" height="300px"><p>' + namepla[nem] + '</p></div>';
+			plaZero(nem);
+			pla2 = $(html1pla);
+			pla2.click(pla2fun);
+			$("#menu").append(pla2);
+		}
+		var Prafor = function(fun) {
+			var pra = 0;
+			if(pla2Pab < 3 || pla1Pab < 3) {
+			for (var i = 0;i < plas.length;i++) {
+				if (!plas[i] == 0) {	
+					pra = 1;
+				} 
+			}
+			//var g = gerl.indexOf(name) >= 0 && fun == 1;
+			if(pla2Pab >= 3 || pla1Pab >= 3){
+				alert("Проиграли!");
+				pla2.hide();
+				pla1.hide();
+				pra = 0;
+			}
+			else if (pra == 0) {
+				alert("Выиграли!");
+			}
+			}
+			return pra;
+		}
+		var pla1fun = function() {
+			pla2.hide();
+			pla1Pab++;
+			pla2Pab = 0;
+			if (Prafor(1) == 1) {
+				pla2Add();
+			}
+		}
+		var pla2fun = function() {
+			pla1.hide();
+			pla2Pab++;
+			pla1Pab = 0;
+			if (Prafor(2) == 1) {
+				pla1Add();
+			}
+		}
+		$("#neb").text(namepla.length);
+		$("#menu").hide();
+		$("#play").click(function() {
+			$("#menu").show();
+			$("#mainmenu").hide();
+			pla1Add();
+			pla2Add();
+		});
+	</script>
+</body>
+</html>
